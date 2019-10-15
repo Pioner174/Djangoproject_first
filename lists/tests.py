@@ -1,9 +1,9 @@
 from django.test import TestCase
+from django.urls import resolve
+from lists.views import home_page
 
-# Create your tests here.
 
-class SmokeTest(TestCase):
-    '''Текст на токсичность'''
-
-    def test_bad_maths(self):
-        self.assertEqual(1+1,3)
+class HomePageTest(TestCase):
+    def test_url(self):
+        found = resolve('/')
+        self.assertEqual(found.func, home_page)
