@@ -12,7 +12,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         '''тест: можно начать список и получитьл его позже'''
         self.browser.get('http://localhost:8000/')
-        self.assertIn('To-DO', self.browser.title)
+        self.assertIn('To-Do', self.browser.title)
         self.fail('Закончить тест')
     
 

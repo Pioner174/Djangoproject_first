@@ -49,3 +49,23 @@ _IceTransSocketUNIXConnect: Cannot connect to non-local host ubuntu
 1571121396926	Marionette	INFO	Listening on port 34049
 1571121396970	Marionette	WARN	TLS certificate errors will be ignored for this session
 1571121397149	Marionette	INFO	Stopped listening on port 34049
+1571136689759	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenj2nJ1"
+_IceTransSocketUNIXConnect: Cannot connect to non-local host ubuntu
+_IceTransSocketUNIXConnect: Cannot connect to non-local host ubuntu
+1571136690294	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1571136690294	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1571136690295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1571136690295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1571136692267	Marionette	INFO	Listening on port 37763
+1571136692367	Marionette	WARN	TLS certificate errors will be ignored for this session
+1571136692515	Marionette	INFO	Stopped listening on port 37763
+1571136710707	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilezPc8gs"
+_IceTransSocketUNIXConnect: Cannot connect to non-local host ubuntu
+_IceTransSocketUNIXConnect: Cannot connect to non-local host ubuntu
+1571136711127	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1571136711127	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1571136711128	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1571136711128	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1571136712853	Marionette	INFO	Listening on port 38267
+1571136712914	Marionette	WARN	TLS certificate errors will be ignored for this session
+1571136713124	Marionette	INFO	Stopped listening on port 38267
