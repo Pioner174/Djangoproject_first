@@ -7,17 +7,11 @@ from django.template.loader import render_to_string
 
 
 class HomePageTest(TestCase):
-    def test_root_url(self):
-        '''ТЕСТ преобразования url в представление домашней страницы'''
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
-    
+
     def test_home_page_return_correct_html(self):
         '''ТЕСТ: домашняя страница возвращает правильный html'''
-        request = HttpRequest()
-        response = home_page(request)
-        html = response.content.decode('utf8')
-        expected_html = render_to_string('home.html')
-        self.assertEqual(html, expected_html)
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')
+
     
    
