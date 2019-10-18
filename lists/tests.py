@@ -13,11 +13,22 @@ class HomePageTest(TestCase):
         '''ТЕСТ: домашняя страница возвращает правильный html'''
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_only_saves_items_when_necessary(self):
+        '''тест: сохраняет элементы только когда нужно'''
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), )
+
     def test_can_save_a_POST_request(self):
         '''Тест: сохранения POST запроса'''
         responce = self.client.post('/', data={'item_text': 'A new list item'})
-        self.assertIn('A new list item', responce.content.decode())
 
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
+        self.assertIn('A new list item', responce.content.decode())
+        self.assertTemplateUsed(responce, 'home.html')
 
 class ItemModelTest(TestCase) :
     '''Тест модели элемента списка'''
