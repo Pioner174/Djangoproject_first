@@ -22,17 +22,14 @@ class NewVisitorTest(unittest.TestCase):
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
         )
-        inputbox.send_keys('Купить павлиньи перья')
+        inputbox.send_keys('Сделать мушку из павлиньих перьев')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(2)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-
-        self.assertTrue(
-            any(row.text == '1: Купить павлиньи перья' for row in rows),
-            f"Новый элемент списка не появился в таблице. Содержимое было :\n{table.text}"
-        )
+        self.assertIn('1: Купить павлиньи перья', [row.text for row in rows])
+        self.assertIn('2: сделать мушку из павлиньих перьев', [row.text for row in rows])
         self.fail('Закончить тест')
 
 
