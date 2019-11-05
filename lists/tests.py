@@ -33,6 +33,16 @@ class HomePageTest(TestCase):
         self.assertEqual(responce.status_code, 302)
         self.assertEqual(responce['location'], '/')
 
+    def test_displays_all_list_items(self):
+        '''тест: отражаются все элементы списка'''
+        Item.objects.create(text='item 1')
+        Item.objects.create(text='item 2')
+
+        responce = self.client.get('/')
+
+        self.assertIn('item 1', responce.content.decode())
+        self.assertIn('item 2', responce.content.decode())
+
 class ItemModelTest(TestCase) :
     '''Тест модели элемента списка'''
 
