@@ -6,8 +6,8 @@ import unittest
 class NewVisitorTest(unittest.TestCase):
     '''тест нового посетитиля'''
     def setUp(self):
-        '''установка'''
         self.browser = webdriver.Firefox()
+
     def tearDown(self):
         '''демонтаж'''
         self.browser.quit()
