@@ -4,7 +4,7 @@ from django.test import LiveServerTestCase
 import time
 from selenium.common.exceptions import WebDriverException
 
-MAXX_WAIT = 10
+MAX_WAIT = 10
 
 class NewVisitorTest(LiveServerTestCase):
     '''тест нового посетитиля'''
@@ -30,7 +30,7 @@ class NewVisitorTest(LiveServerTestCase):
                 self.assertIn(row_text, [row.text for row in rows])
                 return
             except (AssertionError, WebDriverException) as e:
-                if time.time() - start_time > MAXX_WAIT:
+                if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
 
@@ -56,12 +56,39 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.wait_for_row_in_list_table('2: Сделать мушку из павлиньих перьев')
         self.wait_for_row_in_list_table('1: Купить павлиньи перья')
-        self.fail('Закончить тест')
 
 
-# browser = webdriver.Firefox()
-# assert 'To-Do' in browser.title
-# # удовлетворённая она снова ложится спать
-# browser.quit()
+    def test_multiple_users_can_start_lists_at_different_urls(self):
+        '''тест: списки для множества пользователей'''
+        self.browser.get(self.live_server_url)
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Купить павлиньи перья')
+        inputbox.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Купить павлиньи перья')
+
+        edith_list_url = self.browser.current_url
+        self.assertRegex(edith_list_url, '/lists/.+')
+
+        self.browser.quit()
+        self.browser = webdriver.Firefox()
+
+        self.browser.get(self.live_server_url)
+        page_text = self.browser.find_element_by_tag_name('body').text
+        self.assertNotIn('Купить павлиньи перья', page_text)
+
+        self.assertNotIn('Сделать мушку', page_text)
+
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Купить молоко')
+        inputbox.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Купить молоко')
+        francis_list_url = self.browser.current_url
+        self.assertRegex(francis_list_url, '/lists/.+')
+        self.assertNotEqual(francis_list_url, edith_list_url)
+        page_text = self.browser.find_element_by_tag_name('body').text
+        self.assertNotIn('Купить павлиньи перья', page_text)
+        self.assertIn('Купить молоко', page_text)
+
+
 
 
