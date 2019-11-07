@@ -31,17 +31,17 @@ class HomePageTest(TestCase):
         '''тест: переадресует после POST запроса'''
         responce = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertEqual(responce.status_code, 302)
-        self.assertEqual(responce['location'], '/')
+        self.assertEqual(responce['location'], '/lists/одинонокий список/')
 
     def test_displays_all_list_items(self):
         '''тест: отражаются все элементы списка'''
-        Item.objects.create(text='itemey 1')
-        Item.objects.create(text='itemey 2')
+        Item.objects.create(text='itemеу 1')
+        Item.objects.create(text='itemеу 2')
 
         responce = self.client.get('/')
-
         self.assertIn('itemey 1', responce.content.decode())
         self.assertIn('itemey 2', responce.content.decode())
+
 
 class ItemModelTest(TestCase) :
     '''Тест модели элемента списка'''

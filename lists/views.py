@@ -7,7 +7,7 @@ def home_page(request):
     '''Домашня страница'''
     if request.method == 'POST':
         Item.objects.create(text=request.POST['item_text'])
-        return redirect('/')
+        return redirect('/lists/одинонокий список/')
 
     items = Item.objects.all()
     return render(request, 'home.html', {'items': items})
